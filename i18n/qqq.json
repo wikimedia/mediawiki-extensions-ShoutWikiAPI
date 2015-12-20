@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jack Phoenix",
+			"Reedy"
+		]
+	},
+	"apihelp-query+listwikis-description": "{{doc-apihelp-description|query+listwikis}}",
+	"apihelp-query+listwikis-param-wid": "{{doc-apihelp-param|query+listwikis|wid}}",
+	"apihelp-query+listwikis-param-deleted": "{{doc-apihelp-param|query+listwikis|deleted}}",
+	"apihelp-query+listwikis-param-from": "{{doc-apihelp-param|query+listwikis|from}}",
+	"apihelp-query+listwikis-param-to": "{{doc-apihelp-param|query+listwikis|to}}",
+	"apihelp-query+listwikis-param-lang": "{{doc-apihelp-param|query+listwikis|lang}}",
+	"apihelp-query+listwikis-param-countonly": "{{doc-apihelp-param|query+listwikis|countonly}}",
+	"apihelp-query+listwikis-param-limit": "{{doc-apihelp-param|query+listwikis|limit}}",
+	"apihelp-query+listwikis-param-start": "{{doc-apihelp-param|query+listwikis|start}}",
+	"apihelp-query+listwikis-param-end": "{{doc-apihelp-param|query+listwikis|end}}",
+	"apihelp-query+listwikis-example-1": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-2": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-3": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-4": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-5": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-6": "{{doc-apihelp-example|query+listwikis}}",
+	"apihelp-query+listwikis-example-7": "{{doc-apihelp-example|query+listwikis}}",
+}

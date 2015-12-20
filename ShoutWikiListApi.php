@@ -307,13 +307,6 @@ class ShoutWikiListApi extends ApiQueryBase {
 		return $wikiCat;
 	}
 
-	/**
-	 * @return string The description string for this module
-	 */
-	public function getDescription() {
-		return 'List all available wikis on ShoutWiki';
-	}
-
 	public function getAllowedParams() {
 		return array(
 			'wid' => array(
@@ -355,41 +348,31 @@ class ShoutWikiListApi extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'newer',
 					'older'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction'
 			),
 		);
 	}
 
-	public function getParamDescription() {
+	/**
+	 * @see ApiBase::getExamplesMessages()
+	 */
+	protected function getExamplesMessages() {
 		return array(
-			'wid' => 'Unique, wiki-specific ID number; use this when you want to get info about a specific wiki and you know its ID number',
-			'deleted' => 'Also list deleted wikis (optional)',
-			'from' => 'Get all wikis with ID that is equal to or greater than this value',
-			'to' => 'Get all wikis with ID that is equal to or lower than this value',
-			'lang' => 'Wiki language code (i.e. en for English, fi for Finnish, etc.)',
-			'countonly' => 'Return only the amount of wikis',
-			'limit' => 'Get information about this many wikis at once',
-			'dir' => $this->getDirectionDescription( $this->getModulePrefix() ),
-			'start' => 'The timestamp to start enumerating from',
-			'end' => 'The timestamp to end enumerating',
-		);
-	}
-
-	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'code' => 'nosuchlang', 'info' => 'No such language' ),
-		) );
-	}
-
-	public function getExamples() {
-		return array(
-			'api.php?action=query&list=listwikis' => 'Get all active wikis',
-			'api.php?action=query&list=listwikis&swdeleted=1' => 'Also include deleted wikis in the listing',
-			'api.php?action=query&list=listwikis&swwid=177' => 'Get information about the wiki whose ID is #177',
-			'api.php?action=query&list=listwikis&swfrom=100&swto=150' => 'Get all (active) wikis with IDs ranging from 100 to 150',
-			'api.php?action=query&list=listwikis&swfrom=10&swto=50&swlang=fi' => 'Show all Finnish (fi) wikis whose IDs range between 10-50',
-			'api.php?action=query&list=listwikis&swcountonly=1' => 'Show the total amount of active wikis',
-			'api.php?action=query&list=listwikis&swactive=1&swcountonly=1' => 'Show the total amount of all wikis ever, including deleted ones',
+			'api.php?action=query&list=listwikis'
+				=> 'apihelp-query+listwikis-example-1',
+			'api.php?action=query&list=listwikis&swdeleted=1'
+				=> 'apihelp-query+listwikis-example-2',
+			'api.php?action=query&list=listwikis&swwid=177'
+				=> 'apihelp-query+listwikis-example-3',
+			'api.php?action=query&list=listwikis&swfrom=100&swto=150'
+				=> 'apihelp-query+listwikis-example-4',
+			'api.php?action=query&list=listwikis&swfrom=10&swto=50&swlang=fi'
+				=> 'apihelp-query+listwikis-example-5',
+			'api.php?action=query&list=listwikis&swcountonly=1'
+				=> 'apihelp-query+listwikis-example-6',
+			'api.php?action=query&list=listwikis&swactive=1&swcountonly=1'
+				=> 'apihelp-query+listwikis-example-7',
 		);
 	}
 }

@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jack Phoenix",
+			"Reedy"
+		]
+	},
+	"apihelp-query+listwikis-description": "List all available wikis on ShoutWiki",
+	"apihelp-query+listwikis-param-wid": "Unique, wiki-specific ID number; use this when you want to get info about a specific wiki and you know its ID number",
+	"apihelp-query+listwikis-param-deleted": "Also list deleted wikis (optional)",
+	"apihelp-query+listwikis-param-from": "Get all wikis with ID that is equal to or greater than this value",
+	"apihelp-query+listwikis-param-to": "Get all wikis with ID that is equal to or lower than this value",
+	"apihelp-query+listwikis-param-lang": "Wiki language code (i.e. en for English, fi for Finnish, etc.)",
+	"apihelp-query+listwikis-param-countonly": "Return only the amount of wikis",
+	"apihelp-query+listwikis-param-limit": "Get information about this many wikis at once",
+	"apihelp-query+listwikis-param-start": "The timestamp to start enumerating from",
+	"apihelp-query+listwikis-param-end": "The timestamp to end enumerating",
+	"apihelp-query+listwikis-example-1": "Get all active wikis",
+	"apihelp-query+listwikis-example-2": "Also include deleted wikis in the listing",
+	"apihelp-query+listwikis-example-3": "Get information about the wiki whose ID is #177",
+	"apihelp-query+listwikis-example-4": "Get all (active) wikis with IDs ranging from 100 to 150",
+	"apihelp-query+listwikis-example-5": "Show all Finnish (fi) wikis whose IDs range between 10 to 50",
+	"apihelp-query+listwikis-example-6": "Show the total amount of active wikis",
+	"apihelp-query+listwikis-example-7": "Show the total amount of all wikis ever, including deleted ones"
+}
