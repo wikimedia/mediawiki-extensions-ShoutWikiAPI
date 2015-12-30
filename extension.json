@@ -1,0 +1,23 @@
+{
+	"name": "ShoutWiki API",
+	"version": "0.5",
+	"author": [
+		"Jack Phoenix"
+	],
+	"license-name": "PD",
+	"url": "https://www.mediawiki.org/wiki/Extension:ShoutWiki_API",
+	"description": "A collection of ShoutWiki-specific API modules",
+	"type": "other",
+	"MessagesDirs": {
+		"ShoutWikiAPI": [
+			"i18n"
+		]
+	},
+	"APIListModules": {
+		"listwikis": "ShoutWikiListApi"
+	},
+	"AutoloadClasses": {
+		"ShoutWikiListApi": "ShoutWikiListApi.php"
+	},
+	"manifest_version": 1
+}

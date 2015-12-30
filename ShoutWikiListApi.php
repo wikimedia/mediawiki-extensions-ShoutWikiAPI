@@ -5,6 +5,10 @@
  *
  * @file
  * @ingroup API
+ * @author Jack Phoenix <jack@shoutwiki.com>
+ * @license https://en.wikipedia.org/wiki/Public_domain Public domain
+ * @link https://www.mediawiki.org/wiki/Extension:ShoutWiki_API Documentation
+ * @see https://bugzilla.shoutwiki.com/show_bug.cgi?id=193
  */
 class ShoutWikiListApi extends ApiQueryBase {
 
