@@ -4,7 +4,7 @@
 	"author": [
 		"Jack Phoenix"
 	],
-	"license-name": "PD",
+	"license-name": "CC0-1.0",
 	"url": "https://www.mediawiki.org/wiki/Extension:ShoutWiki_API",
 	"description": "A collection of ShoutWiki-specific API modules",
 	"type": "other",
