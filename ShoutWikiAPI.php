@@ -17,7 +17,7 @@ $wgExtensionCredits['other'][] = array(
 	'name' => 'ShoutWiki API',
 	'version' => '0.5',
 	'author' => 'Jack Phoenix',
-	'description' => 'A collection of ShoutWiki-specific API modules',
+	'descriptionmsg' => 'shoutwikiapi-desc',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:ShoutWiki_API'
 );
 
