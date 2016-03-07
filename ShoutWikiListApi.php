@@ -83,7 +83,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 		}
 
 		if ( !empty( $lang ) ) {
-			if ( !array_key_exists( $lang, Language::getLanguageNames() ) ) {
+			if ( !array_key_exists( $lang, Language::fetchLanguageNames() ) ) {
 				$this->dieUsage( 'No such language', 'nosuchlang' );
 			}
 
