@@ -104,7 +104,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 			if ( $row ) {
 				$data['count'] = $row->cnt;
-				ApiResult::setContent( $data, $row->cnt );
+				ApiResult::setContentValue( $data, 'content', $row->cnt );
 			}
 
 			$this->getResult()->setIndexedTagName( $data, 'wiki' );
@@ -157,7 +157,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 				if ( $userIsStaff ) {
 					$data[$wid]['type'] = $wikiType;
 				}
-				ApiResult::setContent( $data[$wid], '' );
+				ApiResult::setContentValue( $data[$wid], 'content', '' );
 
 				// query-continue parameter support
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $data[$wid] );
@@ -168,7 +168,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 				// end query-continue stuff
 			}
 
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'wiki' );
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'wiki' );
 		}
 	}
 
