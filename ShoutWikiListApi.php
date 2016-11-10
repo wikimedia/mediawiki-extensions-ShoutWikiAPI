@@ -363,19 +363,19 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 */
 	protected function getExamplesMessages() {
 		return array(
-			'api.php?action=query&list=listwikis'
+			'action=query&list=listwikis'
 				=> 'apihelp-query+listwikis-example-1',
-			'api.php?action=query&list=listwikis&swdeleted=1'
+			'action=query&list=listwikis&swdeleted=1'
 				=> 'apihelp-query+listwikis-example-2',
-			'api.php?action=query&list=listwikis&swwid=177'
+			'action=query&list=listwikis&swwid=177'
 				=> 'apihelp-query+listwikis-example-3',
-			'api.php?action=query&list=listwikis&swfrom=100&swto=150'
+			'action=query&list=listwikis&swfrom=100&swto=150'
 				=> 'apihelp-query+listwikis-example-4',
-			'api.php?action=query&list=listwikis&swfrom=10&swto=50&swlang=fi'
+			'action=query&list=listwikis&swfrom=10&swto=50&swlang=fi'
 				=> 'apihelp-query+listwikis-example-5',
-			'api.php?action=query&list=listwikis&swcountonly=1'
+			'action=query&list=listwikis&swcountonly=1'
 				=> 'apihelp-query+listwikis-example-6',
-			'api.php?action=query&list=listwikis&swactive=1&swcountonly=1'
+			'action=query&list=listwikis&swactive=1&swcountonly=1'
 				=> 'apihelp-query+listwikis-example-7',
 		);
 	}
