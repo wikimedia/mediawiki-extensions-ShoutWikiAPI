@@ -6,7 +6,7 @@
 	],
 	"license-name": "CC0-1.0",
 	"url": "https://www.mediawiki.org/wiki/Extension:ShoutWiki_API",
-	"description": "A collection of ShoutWiki-specific API modules",
+	"descriptionmsg": "shoutwikiapi-desc",
 	"type": "other",
 	"MessagesDirs": {
 		"ShoutWikiAPI": [
