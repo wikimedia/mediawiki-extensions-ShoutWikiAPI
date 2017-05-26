@@ -7,6 +7,7 @@
 	},
 	"shoutwikiapi-desc": "A collection of ShoutWiki-specific API modules",
 	"apihelp-query+listwikis-description": "List all available wikis on ShoutWiki",
+	"apihelp-query+listwikis-summary": "List all available wikis on ShoutWiki",
 	"apihelp-query+listwikis-param-wid": "Unique, wiki-specific ID number; use this when you want to get info about a specific wiki and you know its ID number",
 	"apihelp-query+listwikis-param-deleted": "Also list deleted wikis (optional)",
 	"apihelp-query+listwikis-param-from": "Get all wikis with ID that is equal to or greater than this value",
