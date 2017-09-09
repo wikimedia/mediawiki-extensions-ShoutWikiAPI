@@ -179,7 +179,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 * @return string Wiki type, either "public", "private" or "school"
 	 */
 	public static function getWikiType( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$wikiType = $dbr->selectField(
 			'wiki_settings',
@@ -201,7 +201,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 * @return string Language code, such as 'en', 'fr', 'de-formal', etc.
 	 */
 	public static function getWikiLanguage( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$wikiLang = $dbr->selectField(
 			'wiki_settings',
@@ -223,7 +223,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 * @return string|bool Wiki URL on success, boolean false on failure
 	 */
 	public static function getWikiURL( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$url = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
@@ -248,7 +248,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 * @return string|bool Wiki sitename on success, boolean false on failure
 	 */
 	public static function getWikiSitename( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$sitename = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
@@ -273,7 +273,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 * @return string The wiki description the founder supplied when creating the wiki
 	 */
 	public static function getWikiDescription( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$wikiDesc = $dbr->selectField(
 			'wiki_settings',
@@ -296,7 +296,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 	 *                as chosen by the wiki's founder
 	 */
 	public static function getWikiCategory( $wikiID ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 
 		$wikiCat = $dbr->selectField(
 			'wiki_settings',
