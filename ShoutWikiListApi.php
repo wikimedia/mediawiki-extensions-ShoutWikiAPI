@@ -5,10 +5,9 @@
  *
  * @file
  * @ingroup API
- * @author Jack Phoenix <jack@shoutwiki.com>
+ * @author Jack Phoenix
  * @license https://en.wikipedia.org/wiki/Public_domain Public domain
  * @link https://www.mediawiki.org/wiki/Extension:ShoutWiki_API Documentation
- * @see https://bugzilla.shoutwiki.com/show_bug.cgi?id=193
  */
 class ShoutWikiListApi extends ApiQueryBase {
 
@@ -51,7 +50,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 		/**
 		 * query builder
 		 */
-		$this->addTables( array( 'wiki_list' ) );
+		$this->addTables( [ 'wiki_list' ] );
 
 		if ( !empty( $start ) || !empty( $end ) ) {
 			$this->addTimestampWhereRange( 'wl_timestamp', $dir, $start, $end );
@@ -84,21 +83,21 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 		if ( !empty( $lang ) ) {
 			if ( !array_key_exists( $lang, Language::fetchLanguageNames() ) ) {
-				$this->dieUsage( 'No such language', 'nosuchlang' );
+				$this->dieWithError( new RawMessage( 'No such language' ), 'nosuchlang' );
 			}
 
 			$this->addTables( 'wiki_settings' );
-			$this->addWhere( array(
+			$this->addWhere( [
 				'ws_wiki = wl_id',
 				'ws_setting' => 'wgLanguageCode',
 				'ws_value' => $lang
-			) );
+			] );
 		}
 
 		if ( $countOnly ) {
 			// Query builder
-			$this->addFields( array( 'COUNT(*) AS cnt' ) );
-			$data = array();
+			$this->addFields( [ 'COUNT(*) AS cnt' ] );
+			$data = [];
 			$res = $this->select( __METHOD__ );
 			$row = $db->fetchObject( $res );
 
@@ -110,11 +109,11 @@ class ShoutWikiListApi extends ApiQueryBase {
 			$this->getResult()->setIndexedTagName( $data, 'wiki' );
 			$this->getResult()->addValue( 'query', $this->getModuleName(), $data );
 		} else {
-			$this->addFields( array( 'wl_id', 'wl_timestamp' ) );
+			$this->addFields( [ 'wl_id', 'wl_timestamp' ] );
 			$this->addOption( 'ORDER BY ', 'wl_id' );
 
 			// result builder
-			$data = array();
+			$data = [];
 			$res = $this->select( __METHOD__ );
 			$result = $this->getResult();
 
@@ -143,7 +142,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 				}
 				// end query-continue stuff
 
-				$data[$wid] = array(
+				$data[$wid] = [
 					'id' => $wid,
 					'lang' => self::getWikiLanguage( $wid ),
 					'url' => 'http://' . self::getWikiURL( $wid ) . '.shoutwiki.com/',
@@ -151,7 +150,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 					'description' => self::getWikiDescription( $wid ),
 					'category' => self::getWikiCategory( $wid ),
 					'creationtimestamp' => $row->wl_timestamp
-				);
+				];
 				// Show wiki type to staff so that they can identify
 				// private wikis easily
 				if ( $userIsStaff ) {
@@ -160,7 +159,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 				ApiResult::setContentValue( $data[$wid], 'content', '' );
 
 				// query-continue parameter support
-				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $data[$wid] );
+				$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $data[$wid] );
 				if ( !$fit ) {
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->wl_timestamp ) );
 					break;
@@ -168,7 +167,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 				// end query-continue stuff
 			}
 
-			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'wiki' );
+			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'wiki' );
 		}
 	}
 
@@ -184,10 +183,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$wikiType = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgWikiType',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -206,10 +205,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$wikiLang = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgLanguageCode',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -227,10 +226,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$url = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgWikiFullSubdomain',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -252,10 +251,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$sitename = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgSitename',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -278,10 +277,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$wikiDesc = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgWikiDescription',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -301,10 +300,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		$wikiCat = $dbr->selectField(
 			'wiki_settings',
 			'ws_value',
-			array(
+			[
 				'ws_setting' => 'wgWikiCategory',
 				'ws_wiki' => $wikiID
-			),
+			],
 			__METHOD__
 		);
 
@@ -312,57 +311,57 @@ class ShoutWikiListApi extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'wid' => array(
+		return [
+			'wid' => [
 				ApiBase::PARAM_TYPE => 'integer'
-			),
-			'deleted' => array(
+			],
+			'deleted' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MAX => 1,
 				ApiBase::PARAM_MIN => 0,
-			),
-			'from' => array(
+			],
+			'from' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 1,
-			),
-			'to' => array(
+			],
+			'to' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 1,
-			),
-			'countonly' => array(
+			],
+			'countonly' => [
 				ApiBase::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_MIN => 1,
-			),
+			],
 			'lang' => null,
-			'limit' => array(
+			'limit' => [
 				ApiBase::PARAM_DFLT => 100,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
-			),
-			'start' => array(
+			],
+			'start' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'end' => array(
+			],
+			'end' => [
 				ApiBase::PARAM_TYPE => 'timestamp'
-			),
-			'dir' => array(
+			],
+			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => array(
+				ApiBase::PARAM_TYPE => [
 					'newer',
 					'older'
-				),
+				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction'
-			),
-		);
+			],
+		];
 	}
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
 	 */
 	protected function getExamplesMessages() {
-		return array(
+		return [
 			'action=query&list=listwikis'
 				=> 'apihelp-query+listwikis-example-1',
 			'action=query&list=listwikis&swdeleted=1'
@@ -377,6 +376,6 @@ class ShoutWikiListApi extends ApiQueryBase {
 				=> 'apihelp-query+listwikis-example-6',
 			'action=query&list=listwikis&swactive=1&swcountonly=1'
 				=> 'apihelp-query+listwikis-example-7',
-		);
+		];
 	}
 }
