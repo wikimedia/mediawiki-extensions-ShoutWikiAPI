@@ -43,7 +43,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 		// Only active (=not deleted) wikis are displayed by default since
 		// 22 July 2013
 		$activeOnly = true;
-		if( isset( $params['deleted'] ) ) {
+		if ( isset( $params['deleted'] ) ) {
 			$activeOnly = false;
 		}
 
@@ -123,7 +123,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 			$count = 0;
 			foreach ( $res as $row ) {
 				$wid = $row->wl_id;
-				$wikiType = self::getWikiType( $wid );
+				$wikiType = ShoutWiki::getType( $wid );
 
 				// Do not show private wikis to non-staff users
 				// This is so that anons using the API will get that 100 results
@@ -144,11 +144,11 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 				$data[$wid] = [
 					'id' => $wid,
-					'lang' => self::getWikiLanguage( $wid ),
-					'url' => 'http://' . self::getWikiURL( $wid ) . '.shoutwiki.com/',
-					'sitename' => self::getWikiSitename( $wid ),
-					'description' => self::getWikiDescription( $wid ),
-					'category' => self::getWikiCategory( $wid ),
+					'lang' => ShoutWiki::getLanguageCode( $wid ),
+					'url' => 'http://' . ShoutWiki::getFullSubdomain( $wid ) . '.shoutwiki.com/',
+					'sitename' => ShoutWiki::getSitename( $wid ),
+					'description' => ShoutWiki::getDescription( $wid ),
+					'category' => ShoutWiki::getCategory( $wid ),
 					'creationtimestamp' => $row->wl_timestamp
 				];
 				// Show wiki type to staff so that they can identify
@@ -169,145 +169,6 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 			$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'wiki' );
 		}
-	}
-
-	/**
-	 * Fetch the wiki type for the wiki with ID number $wikiID
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string Wiki type, either "public", "private" or "school"
-	 */
-	public static function getWikiType( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$wikiType = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgWikiType',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		return $wikiType;
-	}
-
-	/**
-	 * Fetch the language code for the wiki with ID number $wikiID
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string Language code, such as 'en', 'fr', 'de-formal', etc.
-	 */
-	public static function getWikiLanguage( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$wikiLang = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgLanguageCode',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		return $wikiLang;
-	}
-
-	/**
-	 * Get the URL for a wiki by its ID number
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string|bool Wiki URL on success, boolean false on failure
-	 */
-	public static function getWikiURL( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$url = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgWikiFullSubdomain',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		if ( !empty( $url ) ) {
-			return $url;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Get a wiki's sitename by its ID number
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string|bool Wiki sitename on success, boolean false on failure
-	 */
-	public static function getWikiSitename( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$sitename = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgSitename',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		if ( !empty( $sitename ) ) {
-			return $sitename;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Fetch the wiki description for the wiki with ID number $wikiID
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string The wiki description the founder supplied when creating the wiki
-	 */
-	public static function getWikiDescription( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$wikiDesc = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgWikiDescription',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		return $wikiDesc;
-	}
-
-	/**
-	 * Fetch the wiki category for the wiki with ID number $wikiID
-	 *
-	 * @param int $wikiID Wiki ID number
-	 * @return string One of the pre-defined wiki categories (Television, Music, etc.)
-	 *                as chosen by the wiki's founder
-	 */
-	public static function getWikiCategory( $wikiID ) {
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$wikiCat = $dbr->selectField(
-			'wiki_settings',
-			'ws_value',
-			[
-				'ws_setting' => 'wgWikiCategory',
-				'ws_wiki' => $wikiID
-			],
-			__METHOD__
-		);
-
-		return $wikiCat;
 	}
 
 	public function getAllowedParams() {
