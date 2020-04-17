@@ -13,6 +13,9 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 	/**
 	 * Constructor
+	 *
+	 * @param ApiQuery $query
+	 * @param string $moduleName
 	 */
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'sw' );
@@ -136,7 +139,8 @@ class ShoutWikiListApi extends ApiQueryBase {
 				// support for the query-continue parameter, mostly c+p'd from
 				// core /includes/api/ApiQueryLogEvents.php
 				if ( ++$count > $limit ) {
-					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
+					// We've reached the one extra which shows that there are additional pages to be had.
+					// Stop here...
 					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->wl_timestamp ) );
 					break;
 				}
@@ -171,6 +175,10 @@ class ShoutWikiListApi extends ApiQueryBase {
 		}
 	}
 
+	/**
+	 * @see ApiQueryBase::getAllowedParams()
+	 * @return array
+	 */
 	public function getAllowedParams() {
 		return [
 			'wid' => [
@@ -220,6 +228,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 
 	/**
 	 * @see ApiBase::getExamplesMessages()
+	 * @return array
 	 */
 	protected function getExamplesMessages() {
 		return [
