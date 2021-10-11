@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * ShoutWikiListApi
  * List all available ShoutWiki wikis, mainly for s23.org stats.
@@ -121,7 +124,8 @@ class ShoutWikiListApi extends ApiQueryBase {
 			$result = $this->getResult();
 
 			$user = $this->getUser();
-			$userIsStaff = in_array( 'staff', $user->getEffectiveGroups() );
+			$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserEffectiveGroups( $user );
+			$userIsStaff = in_array( 'staff', $effectiveGroups );
 
 			$count = 0;
 			foreach ( $res as $row ) {
