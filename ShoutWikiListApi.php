@@ -105,7 +105,7 @@ class ShoutWikiListApi extends ApiQueryBase {
 			$this->addFields( [ 'COUNT(*) AS cnt' ] );
 			$data = [];
 			$res = $this->select( __METHOD__ );
-			$row = $db->fetchObject( $res );
+			$row = $res->fetchObject();
 
 			if ( $row ) {
 				$data['count'] = $row->cnt;
