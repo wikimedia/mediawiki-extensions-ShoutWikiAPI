@@ -88,7 +88,9 @@ class ShoutWikiListApi extends ApiQueryBase {
 		}
 
 		if ( !empty( $lang ) ) {
-			if ( !array_key_exists( $lang, Language::fetchLanguageNames() ) ) {
+			if ( !array_key_exists( $lang,
+				MediaWikiServices::getInstance()->getLanguageNameUtils()->getLanguageNames() )
+			) {
 				$this->dieWithError( new RawMessage( 'No such language' ), 'nosuchlang' );
 			}
 
