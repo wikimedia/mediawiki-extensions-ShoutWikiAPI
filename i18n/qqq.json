@@ -6,7 +6,6 @@
 		]
 	},
 	"shoutwikiapi-desc": "{{desc|name=ShoutWikiAPI|url=https://www.mediawiki.org/wiki/Extension:ShoutWikiAPI}}",
-	"apihelp-query+listwikis-description": "{{doc-apihelp-description|query+listwikis}}",
 	"apihelp-query+listwikis-summary": "{{doc-apihelp-summary|query+listwikis}}",
 	"apihelp-query+listwikis-param-wid": "{{doc-apihelp-param|query+listwikis|wid}}",
 	"apihelp-query+listwikis-param-deleted": "{{doc-apihelp-param|query+listwikis|deleted}}",
